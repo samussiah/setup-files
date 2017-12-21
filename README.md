@@ -1,24 +1,24 @@
 # setup-files
 Maintain setup files across work environments.
 
-## software
+# software
 * [git](https://git-scm.com/)
 * [vim](http://www.vim.org/)
 * [development server](http://www.easyphp.org/)
 * [AutoHotKey](https://autohotkey.com/)
 
-## setup
+# setup
 Follow these steps to set up a work environment.
 
-### git
+## git
 Store GitHub credentials in the home directory.
 
 ```
 git config --global credential.helper store
 ```
 
-### vim
-Establish vim settings by creating a symlink in _C:\Users\%USERNAME%_ to the \_vimrc file in this repo and initializing all plugins.
+## vim
+Establish vim settings by creating a symlink in _C:\Users\\%USERNAME%_ to the \_vimrc file in this repo and initializing all plugins.
 
 ```
 C:
@@ -30,7 +30,7 @@ git submodule init
 git submodule update
 ```
 
-#### add plugin
+### add plugin
 Add additional plugins from GitHub.
 
 ```
@@ -39,26 +39,26 @@ git add .
 git commit -m "Install <repo> bundle as a submodule."
 ```
 
-#### upgrade all plugins
+### upgrade all plugins
 Update plugins by pulling the latest version from GitHub.
 
 ```
 git submodule foreach git pull origin master
 ```
 
-### development server
+## development server
 Start up a local development server.
 
 1. http://127.0.0.1:1111/
 2. Under _WORKING DIRECTORIES_ click _+ add directory_.
 3. Set _Working directory name_ to an appropriate name, e.g. _GitHub_ for GitHub projects or _graphics_ for graphics projects.
-4. Set _Path to the working directory_ to _C:\Users\%USERNAME%\<appropriate name>_.
+4. Set _Path to the working directory_ to _C:\Users\\%USERNAME%\\<appropriate name>_.
 5. Click _save_.
 6. Development server will be accessible at _127.0.0.1/edsa-<appropriate name>_.
 
-### AutoHotKey
+## AutoHotKey
 Start AutoHotKey, a keyboard macro program.
 
-* Run AutoHotKey initially: C:\Users\%USERNAME%\vimfiles\autoHotKey.ahk
+* Run AutoHotKey initially: C:\Users\\%USERNAME%\vimfiles\autoHotKey.ahk
 * Edit AutoHotKey: CTRL + ALT + [
 * Run AutoHotKey after editing: CTRL + ALT + ]
