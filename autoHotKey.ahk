@@ -1,5 +1,5 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-EnvGet, desktop, DESKTOPDIR
+EnvGet, user, USERNAME
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -8,14 +8,15 @@ AutoTrim off
 
 ;Edit autoHotKey
 ^![::
-    run, gvim.exe %desktop%\autoHotKey.ahk
+    run, gvim.exe C:\Users\%user%\vimfiles\autoHotKey.ahk
 Return
 
 ;Run autoHotKey
 ^!]::
-    run, %desktop%\autoHotKey.ahk
+    run, C:\Users\%user%\vimfiles\autoHotKey.ahk
 Return
 
+;Program history line item with current date
 ^!u::
    Send,%A_Space%%A_Space%%A_Space%%A_Space%%A_YYYY%-%A_MM%-%A_DD%  Spencer Childress%A_Space%%A_Space%%A_Space%
 Return
