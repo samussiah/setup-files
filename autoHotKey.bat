@@ -1,0 +1,1 @@
+start ..\vimfiles\autoHotKey.ahk

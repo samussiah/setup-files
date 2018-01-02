@@ -57,8 +57,13 @@ Start up a local development server.
 6. Development server will be accessible at `127.0.0.1/edsa-<directory name>`.
 
 ## AutoHotKey
-Start AutoHotKey, a keyboard macro program.
+Add a batch file that starts AutoHotKey, a keyboard macro program, to the Windows desktop.
 
-* Run AutoHotKey initially: `C:/Users/$USERNAME/vimfiles/autoHotKey.ahk`
+```
+cd C:/Users/$USERNAME/vimfiles
+cp autoHotKey.bat ../Desktop
+```
+
+* Run AutoHotKey initially by double clicking the batch file on the Windows desktop.
 * Edit AutoHotKey: CTRL + ALT + [
 * Run AutoHotKey after editing: CTRL + ALT + ]
