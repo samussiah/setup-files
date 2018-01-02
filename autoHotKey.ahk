@@ -21,7 +21,7 @@ Return
    Send,%A_Space%%A_Space%%A_Space%%A_Space%%A_YYYY%-%A_MM%-%A_DD%  Spencer Childress%A_Space%%A_Space%%A_Space%
 Return
 
-::graphics::http://interactive.it.rhoworld.com/dev/projects/
+::gfx::http://interactive.it.rhoworld.com/dev/projects/
 
 :?:rheader::
 (
