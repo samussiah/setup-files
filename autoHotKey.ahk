@@ -21,8 +21,8 @@ Return
    Send,%A_Space%%A_Space%%A_Space%%A_Space%%A_YYYY%-%A_MM%-%A_DD%  Spencer Childress%A_Space%%A_Space%%A_Space%
 Return
 
-::graphics::http://interactive.it.rhoworld.com/dev/projects/
-::test ahk::this is a new ahk abbreviation
+::gfx::http://interactive.it.rhoworld.com/dev/projects/
+
 :?:rheader::
 (
 #-------------------------------------------------------------------------------------------------#
