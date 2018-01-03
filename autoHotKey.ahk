@@ -22,7 +22,7 @@ Return
 Return
 
 ::graphics::http://interactive.it.rhoworld.com/dev/projects/
-
+::test ahk::this is a new ahk abbreviation
 :?:rheader::
 (
 #-------------------------------------------------------------------------------------------------#
