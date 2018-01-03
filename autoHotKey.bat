@@ -1,1 +1,1 @@
-start ..\vimfiles\autoHotKey.ahk
+start C:\Users\%USERNAME%\vimfiles\autoHotKey.ahk
