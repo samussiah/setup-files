@@ -5,6 +5,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 AutoTrim off
+StringCaseSense On
 
 ;Edit autoHotKey
 ^![::
@@ -245,17 +246,17 @@ function clone(obj) {
   ; git
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-::gprune::git remote prune origin && git branch | egrep -v '(master|\*)' | xargs git branch -D
+:*C:gprune::git remote prune origin && git branch | egrep -v '(master|\*)' | xargs git branch -D
 
-::gpush::git push --set-upstream origin 
+:*C:gpush::git push --set-upstream origin 
 
-::gcommit::git commit -a -m 
+:*C:gcommit::git commit -a -m 
 
-::gadd::git add -A
+:*C:gadd::git add -A
 
-::gbr::git branch -a
+:*C:gbr::git branch -a
 
-::gdiff::git diff --name-only
+:*C:gdiff::git diff --name-only
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; html
