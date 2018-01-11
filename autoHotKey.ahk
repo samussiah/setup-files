@@ -26,6 +26,8 @@ Return
 
 ::lgr::127.0.0.1/edsa-graphics
 
+::gfx::http://interactive.it.rhoworld.com/dev/projects/
+
 ::web ex::https://rhoworld.webex.com/join/spencer_childress
 
 ;Program history line item with current date
@@ -40,6 +42,8 @@ Return
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; javascript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+::id3::import {{}  {}} from 'd3';
 
 ::cons::console.log(
 
@@ -245,13 +249,13 @@ function clone(obj) {
 
 ::gpush::git push --set-upstream origin 
 
-::gcommit::git commit -a -m '
+::gcommit::git commit -a -m 
 
 ::gadd::git add -A
 
 ::gbr::git branch -a
 
-::gfx::http://interactive.it.rhoworld.com/dev/projects/
+::gdiff::git diff --name-only
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; html
