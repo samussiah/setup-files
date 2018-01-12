@@ -53,8 +53,7 @@ Return
 :?:edf::
 (
 export default function () {
-    
-}
+   
 )
 
 :?:idf::import  from '';
