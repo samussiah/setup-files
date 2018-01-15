@@ -29,6 +29,8 @@ Return
 
 ::gfx::http://interactive.it.rhoworld.com/dev/projects/
 
+:*C:jira::https://jira.it.rhoworld.com/browse/GRRQ
+
 ::web ex::https://rhoworld.webex.com/join/spencer_childress
 
 ;Program history line item with current date
