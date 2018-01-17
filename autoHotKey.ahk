@@ -306,7 +306,7 @@ function assign(to, from) {
 	return to;
 }
 
-function deepAssign(target) {
+function merge(target) {
 	target = toObject(target);
 
 	for (var s = 1; s < arguments.length; s++) {
