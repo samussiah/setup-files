@@ -273,7 +273,7 @@ function assignKey(to, from, key) {
 		}
 	}
 
-	if (!hasOwnProperty.call(to, key) || !isObj(val)) {
+	if (!hasOwnProperty.call(to, key) || !isObj(val) || val instanceof Array) {
 		to[key] = val;
 	} else {
 		to[key] = assign(Object(to[key]), from[key]);
