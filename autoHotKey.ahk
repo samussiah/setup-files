@@ -325,7 +325,7 @@ function merge(target) {
 
 :*C:gpush::git push --set-upstream origin 
 
-:*C:gcommit::git commit -a -m 
+:*C:gcom::git commit -a -m 
 
 :*C:gadd::git add -A
 
