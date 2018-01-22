@@ -331,7 +331,7 @@ function merge(target) {
 
 :*C:gbr::git branch -a
 
-:*C:gdiff::git diff --name-only
+:*C:gdiff::git diff --name-only --diff-filter=U
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; html
