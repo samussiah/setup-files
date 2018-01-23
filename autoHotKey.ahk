@@ -21,6 +21,12 @@ Return
   ; miscellaneous
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+:?:testn::
+(
+# Test notes
+* 
+)
+
 ::rinc::https://github.com/RhoInc
 
 ::lgh::127.0.0.1/edsa-GitHub
@@ -344,13 +350,17 @@ function merge(target) {
 
 :*C:gpush::git push --set-upstream origin 
 
-:*C:gcommit::git commit -a -m 
+:*C:gcom::git commit -a -m 
 
 :*C:gadd::git add -A
 
 :*C:gbr::git branch -a
 
-:*C:gdiff::git diff --name-only
+:*C:gdiff::git diff --name-only --diff-filter=U
+
+:*C:gdl::git branch -d 
+
+:*C:gdr::git push origin --delete 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; html
