@@ -7,12 +7,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 AutoTrim off
 StringCaseSense On
 
-;Edit autoHotKey
+;Edit autoHotKey: CTRL + ALT + [
 ^![::
     run, gvim.exe C:\Users\%user%\vimfiles\autoHotKey.ahk
 Return
 
-;Run autoHotKey
+;Run autoHotKey: CTRL + ALT + ]
 ^!]::
     run, C:\Users\%user%\vimfiles\autoHotKey.ahk
 Return
@@ -46,19 +46,38 @@ Return
   ; javascript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+::edf::
+(
+export default function
+)
+
+::idf::import  from '';
+
 ::id3::import {{}  {}} from 'd3';
 
-::cons::console.log(
+::cl::console.log
 
 ::spkg::start package.json
 
-:?:edf::
+:?:filter data::
 (
-export default function () {
-   
-)
+const
+    filteredData = this.raw_data
+        .filter(d => {
+            let filtered = false;
 
-:?:idf::import  from '';
+            this.filters
+                .filter(filter => filter.value_col !== this.config.measure_col)
+                .forEach(filter => {
+                    if (filtered === false && filter.val !== 'All')
+                        filtered = filter.val instanceof Array
+                            ? filter.val.indexOf(d[filter.col]) < 0
+                            : filter.val !== d[filter.col];
+                });
+
+            return !filtered;
+        });
+)
 
 :?:pkg json::
 (
