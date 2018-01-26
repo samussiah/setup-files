@@ -374,6 +374,11 @@ function merge(target) {
   ; html
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+:?:index js::
+(
+    <script type = 'text/javascript' src = './index.js'></script>
+)
+
 :?:index html::
 (
 <!DOCTYPE html>
