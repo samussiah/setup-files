@@ -30,7 +30,7 @@ Return
 :?:pr i::
 (
 # Issues
-* 
+Closes 
 )
 
 ::rinc::https://github.com/RhoInc
