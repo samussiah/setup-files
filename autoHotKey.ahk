@@ -498,22 +498,22 @@ function merge(target) {
     font-family: 'Open Sans';
 }
 #title {
-    width: 100%;
-    padding: 0 0 12px 0;
+    width: 96%;
+    padding: 0 0 1% 0;
     border-bottom: 2px solid lightgray;
-    margin: 24px 24px 12px 24px;
+    margin: 2% 2% 1% 2%;
     font-size: 32px;
     font-weight: normal;
 }
 #subtitle {
-    width: 100%;
-    margin: 0 24px 12px 24px;
+    width: 96%;
+    margin: 0 2% 1% 2%;
     font-size: 24px;
     font-weight: lighter;
 }
 #container {
-    width: 100%;
-    margin: 12px 24px;
+    width: 96%;
+    margin: 1% 2%;
     display: inline-block;
 }
 )
