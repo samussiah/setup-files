@@ -305,12 +305,12 @@ module.exports = {
                 }
             ]
         }
-    );
+    `);
     const chart = new webCharts.createChart(
         element,
         settings,
         controls
-    );
+    `);
 
     d3.csv(
         './.csv',
@@ -323,7 +323,7 @@ module.exports = {
                 });
             chart.init(data);
         }
-    );
+    `);
 
     /**-------------------------------------------------------------------------------------------\
       Callbacks
