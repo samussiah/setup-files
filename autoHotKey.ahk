@@ -196,19 +196,19 @@ const
 
 :?:rollup config::
 (
-import babel from "rollup-plugin-babel";
+import babel from 'rollup-plugin-babel';
 
-var pkg = require("./package.json");
+var pkg = require('./package.json');
 
 module.exports = {
     input: pkg.module,
     output: {
 		name: pkg.name,
         file: pkg.main,
-        format: "umd",
+        format: 'umd',
 		globals: {
-			d3: "d3",
-			webcharts: "webCharts"
+			d3: 'd3',
+			webcharts: 'webCharts'
 		},
     },
     external: (function() {
@@ -218,12 +218,12 @@ module.exports = {
     }()),
     plugins: [
         babel({
-            exclude: "node_modules/**",
+            exclude: 'node_modules/**',
             presets: [
-                [ "env", {modules: false} ]
+                [ 'env', {modules: false} ]
             ],
             plugins: [
-                "external-helpers"
+                'external-helpers'
             ],
             babelrc: false
         })
@@ -237,55 +237,93 @@ module.exports = {
   Chart
 \------------------------------------------------------------------------------------------------*/
 
-    const
-        element = '#container',
-        settings =
-            {x: {type: 'linear'
-                ,column: ''
-                ,label: ''}
-            ,y: {type: 'linear'
-                ,column: ''
-                ,label: ''}
-            ,marks:
-                [
-                    {type: 'line'
-                    ,per: ['']
-                    ,summarizeY: 'mean'}
-                ,
-                    {type: 'circle'
-                    ,per: ['', '']
-                    ,summarizeY: 'mean'}
-                ]
-            ,color_by: ''
-            ,color_dom: []
-            ,legend:
-                {order: []}},
-        controls = new webCharts.createControls
-            (element + ' .header'
-            ,   {location: 'top'
-                ,inputs:
-                    [
-                        {type: 'subsetter'
-                        ,value_col: ''
-                        ,label: ''
-                        ,start: null}
-                    ,
-                        {type: 'dropdown'
-                        ,options: ['']
-                        ,label: ''
-                        ,values: ['']}
-                    ]}),
-        chart = new webCharts.createChart
-            (element
-            ,settings
-            ,controls);
+    const element = '#container';
+    const settings = {
+        x: {
+            type: 'linear',
+            column: '',
+            label: '',
+        },
+        y: {
+            type: 'linear',
+            column: '',
+            label: '',
+        },
+        marks: [
+            {
+                type: 'circle',
+                per: ['', ''],
+                summarizeY: 'mean',
+                radius: 5,
+                attributes: {},
+            },
+            {
+                type: 'bar',
+                per: [''],
+                summarizeY: 'mean',
+                split: '',
+                arrange: 'grouped',
+                attributes: {},
+            },
+            {
+                type: 'line',
+                per: [''],
+                summarizeY: 'mean',
+                attributes: {},
+            },
+            {
+                type: 'text',
+                per: ['', ''],
+                summarizeY: 'mean',
+                text: '$y',
+                attributes: {},
+            },
+        ],
+        color_by: '',
+        color_dom: [],
+        legend: {
+            label: '',
+            order: []
+        }
+    };
+    const controls = new webCharts.createControls(
+        element + ' .header',
+        {
+            location: 'top',
+            inputs: [
+                {
+                    type: 'subsetter',
+                    value_col: '',
+                    label: '',
+                    start: null,
+                },
+                {
+                    type: 'dropdown',
+                    options: [''],
+                    label: '',
+                    values: [''],
+                }
+            ]
+        }
+    `);
+    const chart = new webCharts.createChart(
+        element,
+        settings,
+        controls
+    `);
 
-    d3.csv('./.csv', data => {
-        data.forEach(d => {
-                
-            });
-        chart.init(data);
-    });
+    d3.csv(
+        './.csv',
+        d => {
+            return d;
+        },
+        data => {
+            data.forEach(d => {
+                    
+                });
+            chart.init(data);
+        }
+    `);
 
     /**-------------------------------------------------------------------------------------------\
       Callbacks
