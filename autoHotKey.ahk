@@ -173,12 +173,19 @@ const
 
 :?:pkg json::
 (
+  "name": "",
+  "main": "./build/.js",
+  "module": "./src/index.js",
+  "dependencies": {
+    "d3": "^3",
+    "webcharts": "^1"
+  },
   "scripts": {
     "build": "npm run bundle && npm run format",
     "bundle": "rollup -c",
     "format": "npm run format-src && npm run format-bundle",
     "format-src": "prettier --print-width=100 --tab-width=4 --single-quote --write \"./src/**/*.js\"",
-    "format-bundle": "prettier --print-width=100 --tab-width=4 --single-quote --write ./build/.js",
+    "format-bundle": "prettier --print-width=100 --tab-width=4 --single-quote --write ./build/*.js",
     "watch": "rollup -c -w"
   },
   "devDependencies": {
