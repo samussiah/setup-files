@@ -163,7 +163,6 @@ if (!Array.prototype.findIndex) {
 :?:object-assign::
 (
 if (typeof Object.assign != 'function') {
-    // Must be writable: true, enumerable: false, configurable: true
     Object.defineProperty(
         Object,
         'assign',
@@ -271,13 +270,13 @@ var pkg = require('./package.json');
 module.exports = {
     input: pkg.module,
     output: {
-		name: pkg.name,
+        name: pkg.name,
         file: pkg.main,
         format: 'umd',
-		globals: {
-			d3: 'd3',
-			webcharts: 'webCharts'
-		},
+        globals: {
+            d3: 'd3',
+            webcharts: 'webCharts'
+        },
     },
     external: (function() {
         var dependencies = pkg.dependencies;
@@ -467,72 +466,72 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
 function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Cannot convert undefined or null to object');
-	}
+    if (val === null || val === undefined) {
+        throw new TypeError('Cannot convert undefined or null to object');
+    }
 
-	return Object(val);
+    return Object(val);
 }
 
 function isObj(x) {
-	var type = typeof x;
-	return x !== null && (type === 'object' || type === 'function');
+    var type = typeof x;
+    return x !== null && (type === 'object' || type === 'function');
 }
 
 function assignKey(to, from, key) {
-	var val = from[key];
+    var val = from[key];
 
-	if (val === undefined || val === null) {
-		return;
-	}
+    if (val === undefined || val === null) {
+        return;
+    }
 
-	if (hasOwnProperty.call(to, key)) {
-		if (to[key] === undefined || to[key] === null) {
-			throw new TypeError('Cannot convert undefined or null to object (' + key + ')');
-		}
-	}
+    if (hasOwnProperty.call(to, key)) {
+        if (to[key] === undefined || to[key] === null) {
+            throw new TypeError('Cannot convert undefined or null to object (' + key + ')');
+        }
+    }
 
-	if (!hasOwnProperty.call(to, key) || !isObj(val) || val instanceof Array) {
-		to[key] = val;
-	} else {
-		to[key] = assign(Object(to[key]), from[key]);
-	}
+    if (!hasOwnProperty.call(to, key) || !isObj(val) || val instanceof Array) {
+        to[key] = val;
+    } else {
+        to[key] = assign(Object(to[key]), from[key]);
+    }
 }
 
 function assign(to, from) {
-	if (to === from) {
-		return to;
-	}
+    if (to === from) {
+        return to;
+    }
 
-	from = Object(from);
+    from = Object(from);
 
-	for (var key in from) {
-		if (hasOwnProperty.call(from, key)) {
-			assignKey(to, from, key);
-		}
-	}
+    for (var key in from) {
+        if (hasOwnProperty.call(from, key)) {
+            assignKey(to, from, key);
+        }
+    }
 
-	if (Object.getOwnPropertySymbols) {
-		var symbols = Object.getOwnPropertySymbols(from);
+    if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(from);
 
-		for (var i = 0; i < symbols.length; i++) {
-			if (propIsEnumerable.call(from, symbols[i])) {
-				assignKey(to, from, symbols[i]);
-			}
-		}
-	}
+        for (var i = 0; i < symbols.length; i++) {
+            if (propIsEnumerable.call(from, symbols[i])) {
+                assignKey(to, from, symbols[i]);
+            }
+        }
+    }
 
-	return to;
+    return to;
 }
 
 function merge(target) {
-	target = toObject(target);
+    target = toObject(target);
 
-	for (var s = 1; s < arguments.length; s++) {
-		assign(target, arguments[s]);
-	}
+    for (var s = 1; s < arguments.length; s++) {
+        assign(target, arguments[s]);
+    }
 
-	return target;
+    return target;
 }
 )
 
