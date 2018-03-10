@@ -681,7 +681,12 @@ function merge(target) {
 
 ::r batch::start /b /wait I:\WINAPPS\R\bin\R.exe CMD BATCH --no-save --vanilla --slave --quiet file.R
 
-::lib path::assign('.lib.loc', 'r-packages', envir = environment(.libPaths))
+:?:lib path::
+(
+if (file.exists('r-packages'))
+    .libPaths('r-packages')
+assign('.lib.loc', 'r-packages', envir = environment(.libPaths))
+)
 
 :?:rheader::
 (
