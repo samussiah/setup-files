@@ -55,6 +55,9 @@
   " exit insert mode
     inoremap jj <esc>
 
+" functions
+com! FormatJSON %!python -m json.tool
+
 " miscellaneous options
   set autoindent " always set autoindenting on
   set autoread " reload file on change
