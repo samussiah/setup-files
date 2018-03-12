@@ -58,7 +58,7 @@ Return
   ; javascript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-:?:array-find::
+:?*C:array.find::
 (
 if (!Array.prototype.find) {
     Object.defineProperty(
@@ -109,7 +109,7 @@ if (!Array.prototype.find) {
 }
 )
 
-:?:array-findIndex::
+:?*C:array.findIndex::
 (
 if (!Array.prototype.findIndex) {
     Object.defineProperty(
@@ -160,7 +160,7 @@ if (!Array.prototype.findIndex) {
 }
 )
 
-:?:object-assign::
+:?*C:object.assign::
 (
 if (typeof Object.assign != 'function') {
     Object.defineProperty(
