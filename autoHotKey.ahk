@@ -583,9 +583,9 @@ function merge(target) {
 
         <script type = 'text/javascript' src = 'https://rawgit.com/jashkenas/underscore/master/underscore.js'></script>
         <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
-        <script type = 'text/javascript' src = 'https://rawgit.com/RhoInc/Webcharts/master/build/webcharts.js'></script>
+        <script type = 'text/javascript' src = 'https://cdn.rawgit.com/RhoInc/Webcharts/master/build/webcharts.js'></script>
 
-        <link type = 'text/css' rel = 'stylesheet' href = 'https://rawgit.com/RhoInc/Webcharts/master/css/webcharts.css'>
+        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.rawgit.com/RhoInc/Webcharts/master/css/webcharts.css'>
         <link type = 'text/css' rel = 'stylesheet' href = './index.css'>
     </head>
 
@@ -611,21 +611,21 @@ function merge(target) {
 }
 #title {
     width: 96%;
-    padding: 0 0 1% 0;
+    padding: 0 0 12px 0;
     border-bottom: 2px solid lightgray;
-    margin: 2% 2% 1% 2%;
+    margin: 24px 2% 12px 2%;
     font-size: 32px;
     font-weight: normal;
 }
 #subtitle {
     width: 96%;
-    margin: 0 2% 1% 2%;
+    margin: 0 2% 12px 2%;
     font-size: 24px;
     font-weight: lighter;
 }
 #container {
     width: 96%;
-    margin: 1% 2%;
+    margin: 12px 2%;
     display: inline-block;
 }
 )
@@ -720,22 +720,22 @@ assign('.lib.loc', 'r-packages', envir = environment(.libPaths))
 :?:read csv::
 (
 ### Input data
-    file <- read.csv(
-        'file.csv',
-        na.strings = ' ',
-        colClasses = 'character'
-    `)
+    file <- 'file.csv' %>%
+        read.csv(
+            na.strings = ' ',
+            colClasses = 'character'
+        `)
 )
 
 :?:write csv::
 (
 ### Output data
-    write.csv(
-        file,
-        'file.csv',
-        na = '',
-        row.names = FALSE
-    `)
+    file %>%
+        write.csv(
+            'file.csv',
+            na = '',
+            row.names = FALSE
+        `)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
