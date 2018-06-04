@@ -43,6 +43,8 @@ git commit -m "Install <repo> bundle as a submodule."
 Update plugins by pulling the latest version from GitHub.
 
 ```
+git submodule init
+git submodule update
 git submodule foreach git pull origin master
 ```
 
