@@ -577,8 +577,6 @@ function merge(target) {
 <html>
     <head>
         <title></title>
-        <div id = 'title'></div>
-        <div id = 'subtitle'></div>
         <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
         <script type = 'text/javascript' src = 'https://rawgit.com/jashkenas/underscore/master/underscore.js'></script>
@@ -590,6 +588,8 @@ function merge(target) {
     </head>
 
     <body>
+        <div id = 'title'></div>
+        <div id = 'subtitle'></div>
         <div id = 'container'></div>
     </body>
 
