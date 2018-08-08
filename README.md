@@ -39,7 +39,7 @@ git add .
 git commit -m "Install <repo> bundle as a submodule."
 ```
 
-### upgrade all plugins
+### update all plugins
 Update plugins by pulling the latest version from GitHub.
 
 ```
