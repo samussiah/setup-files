@@ -35,11 +35,11 @@ Closes
 
 ::rinc::https://github.com/RhoInc
 
-::lgh::127.0.0.1/edsa-GitHub
+::logh::127.0.0.1/edsa-GitHub
 
-::lgr::127.0.0.1/edsa-graphics
+::logr::127.0.0.1/edsa-graphics
 
-::gfx::http://interactive.it.rhoworld.com/dev/projects/
+::grfx::http://interactive.it.rhoworld.com/dev/
 
 :*C:grrq::https://jira.it.rhoworld.com/browse/GRRQ
 
@@ -50,7 +50,7 @@ Closes
    Send,%A_Space%%A_Space%%A_Space%%A_Space%%A_YYYY%-%A_MM%-%A_DD%  Spencer Childress%A_Space%%A_Space%%A_Space%
 Return
 
-::svncommit::svn commit --non-interactive -m ''
+::svncom::svn commit --non-interactive -m ''
 
 ::fandr::find ./ -type f -exec sed -i -e 's///g' {{}{}} \;
 
@@ -60,7 +60,7 @@ Return
   ; javascript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-:?:array.find::
+:?:array find::
 (
 if (!Array.prototype.find) {
     Object.defineProperty(
@@ -111,7 +111,7 @@ if (!Array.prototype.find) {
 }
 )
 
-:?:array.findIndex::
+:?:array findIndex::
 (
 if (!Array.prototype.findIndex) {
     Object.defineProperty(
@@ -162,7 +162,7 @@ if (!Array.prototype.findIndex) {
 }
 )
 
-:?*C:object.assign::
+:?*C:object assign::
 (
 if (typeof Object.assign != 'function') {
     Object.defineProperty(
@@ -200,64 +200,45 @@ if (typeof Object.assign != 'function') {
 }
 )
 
-::edf::
+::exdf::
 (
 export default function
 )
 
-::idf::import  from '';
+::imdf::import  from '';
 
-::id3::import {{}  {}} from 'd3';
+::imd3::import {{}  {}} from 'd3';
 
 ::cl::console.log
 
 ::spkg::start package.json
 
-:?:filter data::
-(
-const
-    filteredData = this.raw_data
-        .filter(d => {
-            let filtered = false;
-
-            this.filters
-                .filter(filter => filter.value_col !== this.config.measure_col)
-                .forEach(filter => {
-                    if (filtered === false && filter.val !== 'All')
-                        filtered = filter.val instanceof Array
-                            ? filter.val.indexOf(d[filter.col]) < 0
-                            : filter.val !== d[filter.col];
-                });
-
-            return !filtered;
-        });
-)
-
 :?:pkg json::
 (
   "name": "",
-  "main": "./build/.js",
+  "version": "",
+  "description": "",
   "module": "./src/index.js",
+  "main": "./build/.js",
   "dependencies": {
     "d3": "^3",
     "webcharts": "^1"
   },
   "scripts": {
-    "build": "npm run bundle && npm run format",
+    "build": "npm audit fix && npm run bundle && npm run format",
     "bundle": "rollup -c",
     "format": "npm run format-src && npm run format-bundle",
     "format-src": "prettier --print-width=100 --tab-width=4 --single-quote --write \"./src/**/*.js\"",
     "format-bundle": "prettier --print-width=100 --tab-width=4 --single-quote --write ./build/*.js",
+    "test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
     "watch": "rollup -c -w"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.0",
-    "babel-register": "^6.26.0",
     "prettier": "^1.7.4",
-    "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-watch": "^4.3.1"
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^3.0.2"
   }
 )
 
@@ -564,13 +545,25 @@ function merge(target) {
 
 :*C:gdr::git push origin --delete 
 
+:*C:gtag::git checkout master && git pull && git add v && git push origin v
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; html
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 :?:index js::
 (
-    <script type = 'text/javascript' src = './index.js'></script>
+d3.csv(
+    //'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/dataCleaning/visits/dmv_Visits.csv',
+    '../../viz-library/data/dataCleaning/visits/dmv_Visits.csv',
+    function(d) {
+        return d;
+    },
+    function(data) {
+        const pvl = participantVisitListing('#container');
+        pvl.init(data);
+    }
+`);
 )
 
 :?:index html::
@@ -578,20 +571,19 @@ function merge(target) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Title: Subtitle</title>
         <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
-        <script type = 'text/javascript' src = 'https://rawgit.com/jashkenas/underscore/master/underscore.js'></script>
         <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.rawgit.com/RhoInc/Webcharts/master/build/webcharts.js'></script>
+        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/build/webcharts.js'></script>
 
-        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.rawgit.com/RhoInc/Webcharts/master/css/webcharts.css'>
+        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.css'>
         <link type = 'text/css' rel = 'stylesheet' href = './index.css'>
     </head>
 
     <body>
-        <div id = 'title'></div>
-        <div id = 'subtitle'></div>
+        <div id = 'title'>Title</div>
+        <div id = 'subtitle'>Subtitle</div>
         <div id = 'container'></div>
     </body>
 
@@ -629,51 +621,6 @@ function merge(target) {
     width: 96%;
     margin: 12px 2%;
     display: inline-block;
-}
-)
-
-:?:more css::
-(
-#title-note {
-    float: right;
-    font-size: 35%;
-    position: absolute;
-    bottom: 5px;
-    right: 0px;
-}
-#container .chart .header {
-    font-weight: normal;
-    font-size: 150%;
-    border-bottom: 1px solid lightgray;
-    height: 35px;
-    position: relative;
-    margin-bottom: 1%;
-}
-#container .chart .header .wc-controls {
-    font-weight: lighter;
-    font-size: 60%;
-    float: right;
-    margin: 0;
-    position: absolute;
-    bottom: 5px;
-    right: 0;
-}
-#container .chart .header .wc-controls .control-group {
-    margin: 0;
-}
-#container .chart .header .wc-controls .control-group:not(:last-child) {
-    margin-right: 10px;
-}
-#container .chart .header .wc-controls .control-group > * {
-    display: inline-block;
-}
-#container .chart .header .wc-controls .control-group .control-label {
-}
-#container .chart .header .wc-controls .control-group .span-description {
-    display: none;
-}
-#container .chart .header .wc-controls .control-group .changer {
-    margin-left: 5px;
 }
 )
 
@@ -744,7 +691,7 @@ assign('.lib.loc', 'r-packages', envir = environment(.libPaths))
   ; sas
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-:?:gbatch::
+:?:sas batch::
 (
 @echo off
 
@@ -778,6 +725,20 @@ exit
         \--------------------------------------------------------------------------------------***/
 )
 
+:?:comjs3::
+(
+            /****---------------------------------------------------------------------------------\
+              
+            \---------------------------------------------------------------------------------****/
+)
+
+:?:comjs5::
+(
+                /*****----------------------------------------------------------------------------\
+                  
+                \----------------------------------------------------------------------------*****/
+)
+
 :?:comr::
 (
 #-------------------------------------------------------------------------------------------------#
@@ -797,6 +758,20 @@ exit
         ###-------------------------------------------------------------------------------------###
         # 
         ###-------------------------------------------------------------------------------------###
+)
+
+:?:comr3::
+(
+            ####-------------------------------------------------------------------------------####
+            # 
+            ####-------------------------------------------------------------------------------####
+)
+
+:?:comr4::
+(
+                #####-------------------------------------------------------------------------#####
+                # 
+                #####-------------------------------------------------------------------------#####
 )
 
 :?:maccom::
@@ -824,6 +799,24 @@ exit
         %put %nrstr(          );
         %put %nrstr(        \-----------------------------------------------------------------------------------------/);
         %put;
+)
+
+:?:maccom3::
+(
+            %put;
+            %put %nrstr(            /-------------------------------------------------------------------------------------\);
+            %put %nrstr(              );
+            %put %nrstr(            \-------------------------------------------------------------------------------------/);
+            %put;
+)
+
+:?:maccom4::
+(
+                %put;
+                %put %nrstr(                /---------------------------------------------------------------------------------\);
+                %put %nrstr(                  );
+                %put %nrstr(                \---------------------------------------------------------------------------------/);
+                %put;
 )
 
 :?:miccom::%put %str(    --> );
