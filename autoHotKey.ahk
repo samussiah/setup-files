@@ -242,6 +242,8 @@ export default function
   }
 )
 
+::testpage::"test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
+
 ::d3set::console.log(d3.set(data.map(d => d[''])).values())
 
 :?:rollup config::
