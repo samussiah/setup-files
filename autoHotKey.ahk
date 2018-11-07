@@ -547,7 +547,7 @@ function merge(target) {
 
 :*C:gdr::git push origin --delete 
 
-:*C:gtag::git checkout master && git pull && git add v && git push origin v
+:*C:gtag::git checkout master && git pull && git tag v && git push origin v
 
 :*C:gclean::git checkout master && git pull && git remote prune origin && git branch | egrep -v '(master|\*)' | xargs git branch -D
 
