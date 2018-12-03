@@ -213,6 +213,16 @@ export default function
 
 ::spkg::start package.json
 
+:?:perform::
+(
+    const t0 = performance.now();
+    //begin performance test
+    code();
+    //end performance test
+    const t1 = performance.now();
+    console.log(``[code] took ${t1 - t0} milliseconds.``);
+)
+
 :?:pkg json::
 (
   "name": "",
