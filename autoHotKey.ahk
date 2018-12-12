@@ -213,7 +213,7 @@ export default function
 
 ::spkg::start package.json
 
-:?:perform::
+:?:prfrm::
 (
     const t0 = performance.now();
     //begin performance test
