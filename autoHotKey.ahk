@@ -45,6 +45,8 @@ Closes
 
 ::web ex::https://rhoworld.webex.com/join/spencer_childress
 
+::npmi::npm install d3@3 webcharts && npm install --save-dev babel-plugin-external-helpers babel-preset-env prettier rollup rollup-plugin-babel
+
 ;Program history line item with current date
 ^!u::
    Send,%A_Space%%A_Space%%A_Space%%A_Space%%A_YYYY%-%A_MM%-%A_DD%  Spencer Childress%A_Space%%A_Space%%A_Space%
