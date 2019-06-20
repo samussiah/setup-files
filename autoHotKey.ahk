@@ -21,6 +21,18 @@ Return
   ; miscellaneous
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+::polyfills::
+    Gosub :?:object assign
+    SendInput `n`n
+    Gosub :?:array find
+    SendInput `n`n
+    Gosub :?:array includes
+    SendInput `n`n
+    Gosub :?:array findIndex
+return
+
+::shrug::¯\_(?)_/¯
+
 ::ghash::git rev-parse HEAD | clip
 
 :?:i tn::
@@ -66,145 +78,198 @@ Return
   ; javascript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+:?:object assign::
+    SendInput if (typeof Object.assign {!}= 'function') {{}
+    SendInput `n    Object.defineProperty(
+    SendInput `n        Object,
+    SendInput `n        'assign',
+    SendInput `n        {{}
+    SendInput `n            value: function assign(target, varArgs) {{} // .length of function is 2
+    SendInput `n                'use strict';
+    SendInput `n
+    SendInput `n                if (target == null) {{} // TypeError if undefined or null
+    SendInput `n                    throw new TypeError('Cannot convert undefined or null to object');
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                var to = Object(target);
+    SendInput `n
+    SendInput `n                for (var index = 1; index < arguments.length; index{+}{+}) {{}
+    SendInput `n                    var nextSource = arguments[index];
+    SendInput `n
+    SendInput `n                    if (nextSource {!}= null) {{} // Skip over if undefined or null
+    SendInput `n                        for (var nextKey in nextSource) {{}
+    SendInput `n                            // Avoid bugs when hasOwnProperty is shadowed
+    SendInput `n                            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {{}
+    SendInput `n                                to[nextKey] = nextSource[nextKey];
+    SendInput `n                            {}}
+    SendInput `n                        {}}
+    SendInput `n                    {}}
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                return to;
+    SendInput `n            {}},
+    SendInput `n            writable: true,
+    SendInput `n            configurable: true
+    SendInput `n        {}}
+    SendInput `n    `);
+    SendInput `n{}}
+Return
+
 :?:array find::
-(
-if (!Array.prototype.find) {
-    Object.defineProperty(
-        Array.prototype,
-        'find',
-        {
-            value: function(predicate) {
-                // 1. Let O be ? ToObject(this value).
-                if (this == null) {
-                    throw new TypeError('"this" is null or not defined');
-                }
+    SendInput if ({!}Array.prototype.find) {{}
+    SendInput `n    Object.defineProperty(
+    SendInput `n        Array.prototype,
+    SendInput `n        'find',
+    SendInput `n        {{}
+    SendInput `n            value: function(predicate) {{}
+    SendInput `n                // 1. Let O be ? ToObject(this value).
+    SendInput `n                if (this == null) {{}
+    SendInput `n                    throw new TypeError('"this" is null or not defined');
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                var o = Object(this);
+    SendInput `n
+    SendInput `n                // 2. Let len be ? ToLength(? Get(O, 'length')).
+    SendInput `n                var len = o.length >>> 0;
+    SendInput `n
+    SendInput `n                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+    SendInput `n                if (typeof predicate {!}== 'function') {{}
+    SendInput `n                    throw new TypeError('predicate must be a function');
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    SendInput `n                var thisArg = arguments[1];
+    SendInput `n
+    SendInput `n                // 5. Let k be 0.
+    SendInput `n                var k = 0;
+    SendInput `n
+    SendInput `n                // 6. Repeat, while k < len
+    SendInput `n                while (k < len) {{}
+    SendInput `n                    // a. Let Pk be {!} ToString(k).
+    SendInput `n                    // b. Let kValue be ? Get(O, Pk).
+    SendInput `n                    // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+    SendInput `n                    // d. If testResult is true, return kValue.
+    SendInput `n                    var kValue = o[k];
+    SendInput `n                    if (predicate.call(thisArg, kValue, k, o)) {{}
+    SendInput `n                        return kValue;
+    SendInput `n                    {}}
+    SendInput `n                    // e. Increase k by 1.
+    SendInput `n                    k{+}{+};
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 7. Return undefined.
+    SendInput `n                return undefined;
+    SendInput `n            {}}
+    SendInput `n        {}}
+    SendInput `n    `);
+    SendInput `n{}}
+Return
 
-                var o = Object(this);
-
-                // 2. Let len be ? ToLength(? Get(O, 'length')).
-                var len = o.length >>> 0;
-
-                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
-                if (typeof predicate !== 'function') {
-                    throw new TypeError('predicate must be a function');
-                }
-
-                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-                var thisArg = arguments[1];
-
-                // 5. Let k be 0.
-                var k = 0;
-
-                // 6. Repeat, while k < len
-                while (k < len) {
-                    // a. Let Pk be ! ToString(k).
-                    // b. Let kValue be ? Get(O, Pk).
-                    // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
-                    // d. If testResult is true, return kValue.
-                    var kValue = o[k];
-                    if (predicate.call(thisArg, kValue, k, o)) {
-                        return kValue;
-                    }
-                    // e. Increase k by 1.
-                    k++;
-                }
-
-                // 7. Return undefined.
-                return undefined;
-            }
-        }
-    `);
-}
-)
+:?:array includes::
+    SendInput if ({!}Array.prototype.includes) {{}
+    SendInput `n    Object.defineProperty(
+    SendInput `n        Array.prototype,
+    SendInput `n        'includes',
+    SendInput `n        {{}
+    SendInput `n            value: function(valueToFind, fromIndex) {{}
+    SendInput `n                if (this == null) {{}
+    SendInput `n                    throw new TypeError('"this" is null or not defined');
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 1. Let O be ? ToObject(this value).
+    SendInput `n                var o = Object(this);
+    SendInput `n
+    SendInput `n                // 2. Let len be ? ToLength(? Get(O, "length")).
+    SendInput `n                var len = o.length >>> 0;
+    SendInput `n
+    SendInput `n                // 3. If len is 0, return false.
+    SendInput `n                if (len === 0) {{}
+    SendInput `n                    return false;
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 4. Let n be ? ToInteger(fromIndex).
+    SendInput `n                //        (If fromIndex is undefined, this step produces the value 0.)
+    SendInput `n                var n = fromIndex | 0;
+    SendInput `n
+    SendInput `n                // 5. If n = 0, then
+    SendInput `n                //    a. Let k be n.
+    SendInput `n                // 6. Else n < 0,
+    SendInput `n                //    a. Let k be len {+} n.
+    SendInput `n                //    b. If k < 0, let k be 0.
+    SendInput `n                var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+    SendInput `n
+    SendInput `n                function sameValueZero(x, y) {{}
+    SendInput `n                    return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 7. Repeat, while k < len
+    SendInput `n                while (k < len) {{}
+    SendInput `n                    // a. Let elementK be the result of ? Get(O, {!} ToString(k)).
+    SendInput `n                    // b. If SameValueZero(valueToFind, elementK) is true, return true.
+    SendInput `n                    if (sameValueZero(o[k], valueToFind)) {{}
+    SendInput `n                        return true;
+    SendInput `n                    {}}
+    SendInput `n                    // c. Increase k by 1. 
+    SendInput `n                    k{+}{+};
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 8. Return false
+    SendInput `n                return false;
+    SendInput `n            {}}
+    SendInput `n        {}}
+    SendInput `n    `);
+    SendInput `n{}}
+Return
 
 :?:array findIndex::
-(
-if (!Array.prototype.findIndex) {
-    Object.defineProperty(
-        Array.prototype,
-        'findIndex',
-        {
-            value: function(predicate) {
-                // 1. Let O be ? ToObject(this value).
-                if (this == null) {
-                    throw new TypeError('"this" is null or not defined');
-                }
-
-                var o = Object(this);
-
-                // 2. Let len be ? ToLength(? Get(O, "length")).
-                var len = o.length >>> 0;
-
-                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
-                if (typeof predicate !== 'function') {
-                    throw new TypeError('predicate must be a function');
-                }
-
-                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-                var thisArg = arguments[1];
-
-                // 5. Let k be 0.
-                var k = 0;
-
-                // 6. Repeat, while k < len
-                while (k < len) {
-                    // a. Let Pk be ! ToString(k).
-                    // b. Let kValue be ? Get(O, Pk).
-                    // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
-                    // d. If testResult is true, return k.
-                    var kValue = o[k];
-                    if (predicate.call(thisArg, kValue, k, o)) {
-                        return k;
-                    }
-                    // e. Increase k by 1.
-                    k++;
-                }
-
-                // 7. Return -1.
-                return -1;
-            }
-        }
-    `);
-}
-)
-
-:?*C:object assign::
-(
-if (typeof Object.assign != 'function') {
-    Object.defineProperty(
-        Object,
-        'assign',
-        {
-            value: function assign(target, varArgs) { // .length of function is 2
-                'use strict';
-
-                if (target == null) { // TypeError if undefined or null
-                    throw new TypeError('Cannot convert undefined or null to object');
-                }
-
-                var to = Object(target);
-
-                for (var index = 1; index < arguments.length; index++) {
-                    var nextSource = arguments[index];
-
-                    if (nextSource != null) { // Skip over if undefined or null
-                        for (var nextKey in nextSource) {
-                            // Avoid bugs when hasOwnProperty is shadowed
-                            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                                to[nextKey] = nextSource[nextKey];
-                            }
-                        }
-                    }
-                }
-
-                return to;
-            },
-            writable: true,
-            configurable: true
-        }
-    `);
-}
-)
+    SendInput if ({!}Array.prototype.findIndex) {{}
+    SendInput `n    Object.defineProperty(
+    SendInput `n        Array.prototype,
+    SendInput `n        'findIndex',
+    SendInput `n        {{}
+    SendInput `n            value: function(predicate) {{}
+    SendInput `n                // 1. Let O be ? ToObject(this value).
+    SendInput `n                if (this == null) {{}
+    SendInput `n                    throw new TypeError('"this" is null or not defined');
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                var o = Object(this);
+    SendInput `n
+    SendInput `n                // 2. Let len be ? ToLength(? Get(O, "length")).
+    SendInput `n                var len = o.length >>> 0;
+    SendInput `n
+    SendInput `n                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+    SendInput `n                if (typeof predicate {!}== 'function') {{}
+    SendInput `n                    throw new TypeError('predicate must be a function');
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    SendInput `n                var thisArg = arguments[1];
+    SendInput `n
+    SendInput `n                // 5. Let k be 0.
+    SendInput `n                var k = 0;
+    SendInput `n
+    SendInput `n                // 6. Repeat, while k < len
+    SendInput `n                while (k < len) {{}
+    SendInput `n                    // a. Let Pk be {!} ToString(k).
+    SendInput `n                    // b. Let kValue be ? Get(O, Pk).
+    SendInput `n                    // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+    SendInput `n                    // d. If testResult is true, return k.
+    SendInput `n                    var kValue = o[k];
+    SendInput `n                    if (predicate.call(thisArg, kValue, k, o)) {{}
+    SendInput `n                        return k;
+    SendInput `n                    {}}
+    SendInput `n                    // e. Increase k by 1.
+    SendInput `n                    k{+}{+};
+    SendInput `n                {}}
+    SendInput `n
+    SendInput `n                // 7. Return -1.
+    SendInput `n                return -1;
+    SendInput `n            {}}
+    SendInput `n        {}}
+    SendInput `n    `);
+    SendInput `n{}}
+Return
 
 ::exdf::
 (
