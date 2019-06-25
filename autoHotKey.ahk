@@ -21,6 +21,8 @@ Return
   ; miscellaneous
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+::node log::console.log(util.inspect(, false, null, true));
+
 ::polyfills::
     Gosub :?:object assign
     SendInput `n`n
