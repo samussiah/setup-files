@@ -275,8 +275,8 @@ Return
 
 ::exdf::
 (
-export default function () {{}
-{}}
+export default function () {
+}
 )
 
 ::imdf::import  from '';
