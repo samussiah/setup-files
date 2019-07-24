@@ -61,7 +61,7 @@ Closes
 
 ::web ex::https://rhoworld.webex.com/join/spencer_childress
 
-::npmi::npm install d3@3 webcharts && npm install --save-dev babel-plugin-external-helpers babel-preset-env prettier rollup rollup-plugin-babel
+::npmi::npm install d3@3 webcharts && npm install --save-dev @babel/core @babel/preset-env prettier rollup rollup-plugin-babel
 
 ;Program history line item with current date
 ^!u::
@@ -275,14 +275,15 @@ Return
 
 ::exdf::
 (
-export default function
+export default function () {{}
+{}}
 )
 
 ::imdf::import  from '';
 
 ::imd3::import {{}  {}} from 'd3';
 
-::cl::console.log
+::clog::console.log
 
 ::spkg::start package.json
 
@@ -298,32 +299,34 @@ export default function
 
 :?:pkg json::
 (
-  "name": "",
-  "version": "",
-  "description": "",
-  "module": "./src/index.js",
-  "main": "./build/.js",
-  "dependencies": {
-    "d3": "^3",
-    "webcharts": "^1"
-  },
-  "scripts": {
-    "build": "npm audit fix && npm run bundle && npm run format",
-    "bundle": "rollup -c",
-    "format": "npm run format-src && npm run format-bundle",
-    "format-src": "prettier --print-width=100 --tab-width=4 --single-quote --write \"./src/**/*.js\"",
-    "format-bundle": "prettier --print-width=100 --tab-width=4 --single-quote --write ./build/*.js",
-    "test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
-    "watch": "rollup -c -w"
-  },
-  "devDependencies": {
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.6.0",
-    "prettier": "^1.7.4",
-    "rollup": "^0.66.6",
-    "rollup-plugin-babel": "^3.0.2"
-  }
+    "name": "",
+    "version": "",
+    "description": "",
+    "module": "./src/index.js",
+    "main": "./bundle.js",
+    "dependencies": {
+        "d3": "^3",
+        "webcharts": "^1"
+    },
+    "scripts": {
+        "build": "npm audit fix && npm run bundle && npm run format",
+        "bundle": "rollup -c",
+        "format": "npm run format-src && npm run format-bundle",
+        "format-src": "prettier --print-width=100 --tab-width=4 --single-quote --write \"./src/**/*.js\"",
+        "format-bundle": "prettier --print-width=100 --tab-width=4 --single-quote --write ./bundle.js",
+        "test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
+        "watch": "rollup -c -w"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.5",
+        "@babel/preset-env": "^7.4.5",
+        "prettier": "^1.17.1",
+        "rollup": "^1.12.3",
+        "rollup-plugin-babel": "^4.3.2"
+    }
 )
+
+::unittest::"test": "mocha --require @babel/register ./test/*.js",
 
 ::testpage::"test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
 
@@ -333,9 +336,9 @@ export default function
 (
 import babel from 'rollup-plugin-babel';
 
-var pkg = require('./package.json');
+const pkg = require('./package.json');
 
-module.exports = {
+export default {
     input: pkg.module,
     output: {
         name: pkg.name
@@ -354,7 +357,7 @@ module.exports = {
         },
     },
     external: (function() {
-        var dependencies = pkg.dependencies;
+        const dependencies = pkg.dependencies;
 
         return Object.keys(dependencies);
     }()),
@@ -362,10 +365,7 @@ module.exports = {
         babel({
             exclude: 'node_modules/**',
             presets: [
-                [ 'env', {modules: false} ]
-            ],
-            plugins: [
-                'external-helpers'
+                [ '@babel/preset-env' ]
             ],
             babelrc: false
         })
@@ -431,7 +431,6 @@ module.exports = {
     const controls = new webCharts.createControls(
         element + ' .header',
         {
-            location: 'top',
             inputs: [
                 {
                     type: 'subsetter',
@@ -456,13 +455,10 @@ module.exports = {
 
     d3.csv(
         './.csv',
-        d => {
+        (d,i) => {
             return d;
         },
         data => {
-            data.forEach(d => {
-                    
-                });
             chart.init(data);
         }
     `);
@@ -641,14 +637,17 @@ function merge(target) {
 :?:index js::
 (
 d3.csv(
-    //'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/dataCleaning/visits/dmv_Visits.csv',
-    '../../viz-library/data/dataCleaning/visits/dmv_Visits.csv',
-    function(d) {
+    'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/.csv',
+    function(d,i) {
         return d;
     },
     function(data) {
-        const pvl = participantVisitListing('#container');
-        pvl.init(data);
+        const instance = (
+            '#container', // element
+            {
+            } // settings
+        `);
+        instance.init(data);
     }
 `);
 )
@@ -662,9 +661,9 @@ d3.csv(
         <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
         <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/build/webcharts.js'></script>
+        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/build/webcharts.min.js'></script>
 
-        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.css'>
+        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.min.css'>
         <link type = 'text/css' rel = 'stylesheet' href = './index.css'>
     </head>
 
@@ -755,23 +754,24 @@ assign('.lib.loc', 'r-packages', envir = environment(.libPaths))
 
 :?:read csv::
 (
-### Input data
-    file <- 'file.csv' %>%
-        read.csv(
-            na.strings = ' ',
-            colClasses = 'character'
-        `)
+# input data
+data <- 'file.csv' %>%
+    data.table`:`:fread(
+        sep = ',',
+        na.strings = '',
+        colClasses = 'character'
+    `)
 )
 
 :?:write csv::
 (
-### Output data
-    file %>%
-        write.csv(
-            'file.csv',
-            na = '',
-            row.names = FALSE
-        `)
+# output data
+data %>%
+    data.table`:`:fwrite(
+        'file.csv',
+        na = '',
+        row.names = FALSE
+    `)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
