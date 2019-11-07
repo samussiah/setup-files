@@ -9,12 +9,12 @@ StringCaseSense On
 
 ;Edit autoHotKey: CTRL + ALT + [
 ^![::
-    run, gvim.exe C:\Users\%user%\vimfiles\autoHotKey.ahk
+    run, gvim.exe "C:\Users\%username%\vimfiles\autoHotKey.ahk"
 Return
 
 ;Run autoHotKey: CTRL + ALT + ]
 ^!]::
-    run, C:\Users\%user%\vimfiles\autoHotKey.ahk
+    run, C:\Users\%username%\vimfiles\autoHotKey.ahk
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
