@@ -26,27 +26,26 @@ cd Users/$USERNAME
 git clone http://github.com/samussiah/setup-files.git C:/Users/$USERNAME/vimfiles
 ln -s C:/Users/$USERNAME/vimfiles/_vimrc C:/Users/$USERNAME/_vimrc
 cd C:/Users/$USERNAME/vimfiles
-git submodule init
-git submodule update
 ```
+
+Then in vim run `:PlugInstall`.
 
 ### add plugin
-Add additional plugins from GitHub.
 
-```
-git submodule add http://github.com/<repo> bundle/<repo>
-git add .
-git commit -m "Install <repo> bundle as a submodule."
-```
+1. Open ~/\_vimrc.
+2. Add a line under the _" declare plugins_ comment like so: `Plug 'user/repo`.
+3. Save the updated \_vimrc file.
+4. Reload the updated \_vimrc file or restart vim.
+5. In vim run `:PlugInstall`.
 
 ### update all plugins
-Update plugins by pulling the latest version from GitHub.
+1. In vim run `:PlugUpdate`.
 
-```
-git submodule init
-git submodule update
-git submodule foreach git pull origin master
-```
+### remove plugin
+1. Open ~/\_vimrc.
+2. Remove the line of the plugin to be removed.
+3. Reload the updated \_vimrc file or restart vim.
+4. In vim run `:PlugClean`.
 
 ## development server
 Start up a local development server.
