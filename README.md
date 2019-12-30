@@ -30,22 +30,30 @@ cd C:/Users/$USERNAME/vimfiles
 
 Then in vim run `:PlugInstall`.
 
-### add plugin
+### editing the \_vimrc
+1. Open `C:/Users/$USERNAME/_vimrc` or in vim type `,ev`.
+2. Edit the file.
+3. Copy the file into `C:/Users/$USERNAME/vimfiles`.
+4. In `C:/Users/$USERNAME/vimfiles` run these commands from the command line:
+  1. `git add -A`
+  2. `git commit -a -m 'description of the update'`
+  3. `git push`
 
-1. Open ~/\_vimrc.
-2. Add a line under the _" declare plugins_ comment like so: `Plug 'user/repo`.
-3. Save the updated \_vimrc file.
-4. Reload the updated \_vimrc file or restart vim.
-5. In vim run `:PlugInstall`.
+### plugins
 
-### update all plugins
-1. In vim run `:PlugUpdate`.
-
-### remove plugin
-1. Open ~/\_vimrc.
-2. Remove the line of the plugin to be removed.
-3. Reload the updated \_vimrc file or restart vim.
-4. In vim run `:PlugClean`.
+* adding
+  1. Open ~/\_vimrc.
+  2. Add a line under the _" declare plugins_ comment like so: `Plug 'user/repo`.
+  3. Save the updated \_vimrc file.
+  4. Reload the updated \_vimrc file or restart vim.
+  5. In vim run `:PlugInstall`.
+* updating
+  1. In vim run `:PlugUpdate`.
+* removing
+  1. Open ~/\_vimrc.
+  2. Remove the line of the plugin to be removed.
+  3. Reload the updated \_vimrc file or restart vim.
+  4. In vim run `:PlugClean`.
 
 ## development server
 Start up a local development server.

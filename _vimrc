@@ -85,20 +85,20 @@ com! FormatJSON %!python -m json.tool
 "filetype plugin indent on
 set autoindent " always set autoindenting on
 set autoread " reload file on change
-"set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set clipboard=unnamed " copy/paste to system clipboard
 set copyindent " copy the previous indentation on autoindenting
 set expandtab " replace tabs with spaces
-"set hidden " hide buffers rather than close them
-"set history=1000 " remember more commands and search history
+set hidden " hide buffers rather than close them
+set history=1000 " remember more commands and search history
 set hlsearch " highlight search terms
 set ignorecase " ignore case when searching
 set incsearch " show search matches as you type
-"set laststatus=2 " always display status line
+set laststatus=2 " always display status line
 set nobackup " no backup file
 set noerrorbells " don't beep
 set noswapfile " no swap file
-"set nowrap " don't wrap lines
+set nowrap " don't wrap lines
 set number " always show line numbers
 set pastetoggle=<F2>
 set shiftround " use multiple of shiftwidth when indenting with '<' and '>'
