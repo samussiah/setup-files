@@ -23,7 +23,7 @@ Return
 
 ::node log::console.log(util.inspect(, false, null, true));
 
-::polyfills::
+::poly fills::
     Gosub :?:object assign
     SendInput `n`n
     Gosub :?:array find
@@ -34,8 +34,6 @@ Return
 return
 
 ::shrug::¯\_(?)_/¯
-
-::ghash::git rev-parse HEAD | clip
 
 :?:i tn::
 (
@@ -61,7 +59,7 @@ Closes
 
 ::web ex::https://rhoworld.webex.com/join/spencer_childress
 
-::npmi::npm install d3@3 webcharts && npm install --save-dev @babel/core @babel/preset-env prettier rollup rollup-plugin-babel
+::npmi::npm install d3@3 webcharts@1 && npm install --save-dev @babel/core @babel/preset-env prettier rollup rollup-plugin-babel
 
 ;Program history line item with current date
 ^!u::
@@ -79,6 +77,55 @@ Return
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; javascript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+:?:fetch json::
+(
+fetch('')
+    .then(response => response.json())
+    .then(data => {
+        const instance = (
+            '#container', // element
+            {
+            } // settings
+        `);
+        instance.init(data);
+        return instance;
+    });
+)
+
+:?:fetch csv::
+(
+fetch('')
+    .then(response => response.text())
+    .then(text => d3.csvParse(text))
+    .then(data => {
+        const instance = (
+            '#container', // element
+            {
+            } // settings
+        `);
+        instance.init(data);
+        return instance;
+    });
+)
+
+:?:index js::
+(
+d3.csv(
+    '',
+    function(d,i) {
+        return d;
+    },
+    function(data) {
+        const instance = (
+            '#container', // element
+            {
+            } // settings
+        `);
+        instance.init(data);
+    }
+`);
+)
 
 :?:object assign::
     SendInput if (typeof Object.assign {!}= 'function') {{}
@@ -291,7 +338,7 @@ export default function () {
 (
     const t0 = performance.now();
     //begin performance test
-    code();
+
     //end performance test
     const t1 = performance.now();
     console.log(``[code] took ${t1 - t0} milliseconds.``);
@@ -326,9 +373,9 @@ export default function () {
     }
 )
 
-::unittest::"test": "mocha --require @babel/register ./test/*.js",
+::unit test::"test": "mocha --require @babel/register ./test/*.js",
 
-::testpage::"test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
+::test page::"test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
 
 ::d3set::console.log(d3.set(data.map(d => d[''])).values())
 
@@ -492,7 +539,7 @@ export default {
         });
 )
 
-:?:clonejs::
+:?:clone js::
 (
 function clone(obj) {
     let copy;
@@ -531,7 +578,7 @@ function clone(obj) {
 }
 )
 
-:?:mergejs::
+:?:merge js::
 (
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
@@ -630,27 +677,11 @@ function merge(target) {
 
 :*C:gclean::git checkout master && git pull && git remote prune origin && git branch | egrep -v '(master|\*)' | xargs git branch -D
 
+:*C:ghash::git rev-parse HEAD | clip
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; html
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-:?:index js::
-(
-d3.csv(
-    'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/.csv',
-    function(d,i) {
-        return d;
-    },
-    function(data) {
-        const instance = (
-            '#container', // element
-            {
-            } // settings
-        `);
-        instance.init(data);
-    }
-`);
-)
 
 :?:index html::
 (
@@ -661,9 +692,9 @@ d3.csv(
         <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
         <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/build/webcharts.min.js'></script>
+        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts@1/build/webcharts.min.js'></script>
 
-        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.min.css'>
+        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts@1/css/webcharts.min.css'>
         <link type = 'text/css' rel = 'stylesheet' href = './index.css'>
     </head>
 
@@ -689,23 +720,23 @@ d3.csv(
     margin: 0;
     font-family: 'Open Sans';
 }
-#title {
+body > * {
     width: 96%;
+    margin: 12px 2%;
+}
+#title {
     padding: 0 0 12px 0;
     border-bottom: 2px solid lightgray;
-    margin: 24px 2% 12px 2%;
+    margin-top: 24px;
     font-size: 32px;
     font-weight: normal;
 }
 #subtitle {
-    width: 96%;
-    margin: 0 2% 12px 2%;
+    margin-top: 0;
     font-size: 24px;
     font-weight: lighter;
 }
 #container {
-    width: 96%;
-    margin: 12px 2%;
     display: inline-block;
 }
 )
@@ -714,13 +745,12 @@ d3.csv(
   ; r
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-::r batch::start /b /wait I:\WINAPPS\R\bin\R.exe CMD BATCH --no-save --vanilla --slave --quiet file.R
+::r batch::start /b /wait I:\WINAPPS\R\Current\bin\R.exe CMD BATCH --no-save --vanilla --slave --quiet file.R
 
 :?:lib path::
 (
-if (file.exists('r-packages'))
-    .libPaths('r-packages')
-assign('.lib.loc', 'r-packages', envir = environment(.libPaths))
+if (!grepl('C:/Users/.*/Documents', path.expand('~')))
+    .libPaths(c('I:/WINAPPS/R/Current/library', 'I:/WINAPPS/R/Current/lib-core', 'I:/WINAPPS/R/Current/lib-expanded'))
 )
 
 :?:rheader::
@@ -782,7 +812,7 @@ data %>%
 (
 @echo off
 
-    call "I:\RHO_APPS\SAS Grid\GridBatch\PROD\gridBatch94.bat" ".sas"
+    call "I:\RHO_APPS\SAS Grid\GridBatch\PROD\gridBatch94.bat" ".sas" wait
 
 exit
 )
