@@ -51,9 +51,9 @@ Closes
 
 ::rincio::https://rhoinc.github.io
 
-::safety::https://github.com/SafetyGraphics
+::sgraio::https://github.com/SafetyGraphics
 
-::safetyio::https://safetygraphics.github.io
+::sgraio::https://safetygraphics.github.io
 
 ::logh::127.0.0.1/edsa-GitHub
 
