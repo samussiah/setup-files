@@ -72,7 +72,9 @@ Return
 
 ::pretty json::cat .json | python -m json.tool >> .json
 
-::pyjson::{%}{!}python -m json.tool
+::py json::{%}{!}python -m json.tool
+
+::node json::node -e "require('fs').writeFileSync(process.argv[1], JSON.stringify(JSON.parse(require('fs').readFileSync(process.argv[1])), null, 4));"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ; javascript
