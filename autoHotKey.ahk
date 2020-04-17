@@ -49,6 +49,12 @@ Closes
 
 ::rinc::https://github.com/RhoInc
 
+::rincio::https://rhoinc.github.io
+
+::safety::https://github.com/SafetyGraphics
+
+::safetyio::https://safetygraphics.github.io
+
 ::logh::127.0.0.1/edsa-GitHub
 
 ::logr::127.0.0.1/edsa-graphics
