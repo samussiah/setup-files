@@ -51,7 +51,7 @@ Closes
 
 ::rincio::https://rhoinc.github.io
 
-::sgraio::https://github.com/SafetyGraphics
+::sgra::https://github.com/SafetyGraphics
 
 ::sgraio::https://safetygraphics.github.io
 
