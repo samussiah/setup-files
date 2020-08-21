@@ -86,6 +86,20 @@ Return
   ; javascript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+:?:2csv::
+(
+const array = {value: data}; // replace [ null ] with the name of the array
+const replacer = (key, value) => value === null ? '' : value; // specify how you want to handle null values here
+const header = Object.keys(array.value);
+let csv = array.value
+    .map(row => (
+        header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(',')
+    `));
+csv.unshift(header.join(','));
+csv = csv.join('\r\n');
+console.log(csv);
+)
+
 :?:fetch json::
 (
 fetch('')
