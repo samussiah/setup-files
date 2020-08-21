@@ -90,7 +90,7 @@ Return
 (
 const array = {value: data}; // replace [ null ] with the name of the array
 const replacer = (key, value) => value === null ? '' : value; // specify how you want to handle null values here
-const header = Object.keys(array.value);
+const header = Object.keys(array.value[0]);
 let csv = array.value
     .map(row => (
         header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(',')
