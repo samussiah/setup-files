@@ -4,7 +4,6 @@ Maintain setup files across work environments.
 # software
 * [git](https://git-scm.com/)
 * [vim](http://www.vim.org/)
-* [development server](http://www.easyphp.org/)
 * [AutoHotKey](https://autohotkey.com/)
 
 # setup
@@ -55,15 +54,13 @@ Then in vim run `:PlugInstall`.
   3. Reload the updated \_vimrc file or restart vim.
   4. In vim run `:PlugClean`.
 
-## development server
-Start up a local development server.
+## local server
+Start up a local local server.
 
-1. http://127.0.0.1:1111/
-2. Under _WORKING DIRECTORIES_ click _+ add directory_.
-3. Set _Working directory name_ to an appropriate name, e.g. _GitHub_ for GitHub projects.
-4. Set _Path to the working directory_ to `C:/Users/$USERNAME/<directory name>`.
-5. Click _save_.
-6. Development server will be accessible at `127.0.0.1/edsa-<directory name>`.
+1. Install http-sever: `npm i -G http-server`
+2. Create package.json: `touch package.json`
+3. Add command to package.json: `echo '{ "scripts": { "local": "http-server ." } }' > package.json`
+4. Start local server: `npm run local`
 
 ## AutoHotKey
 Add a batch file that starts AutoHotKey, a keyboard macro program, to the Windows desktop.

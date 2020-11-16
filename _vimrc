@@ -8,7 +8,9 @@
 call plug#begin('~/vimfiles/plugins')
 
     " declare plugins
+    Plug 'ap/vim-css-color'
     Plug 'altercation/vim-colors-solarized'
+    Plug 'frazrepo/vim-rainbow'
     Plug 'godlygeek/tabular'
     Plug 'kien/ctrlp.vim'
     Plug 'pangloss/vim-javascript'
