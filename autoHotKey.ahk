@@ -21,6 +21,13 @@ Return
   ; miscellaneous
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+^!Up::Send      {Media_Stop}
+^!Down::Send    {Media_Play_Pause}
+^!Left::Send    {Media_Prev}
+^!Right::Send   {Media_Next}
+^!PgUp::Send    {Volume_Up}
+^!PgDn::Send    {Volume_Down}
+
 ::node log::console.log(util.inspect(, false, null, true));
 
 ::poly fills::
