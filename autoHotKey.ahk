@@ -14,7 +14,7 @@ Return
 
 ;Run autoHotKey: CTRL + ALT + ]
 ^!]::
-    run, C:\Users\%username%\vimfiles\autoHotKey.ahk
+    run, "C:\Users\%username%\vimfiles\autoHotKey.ahk"
 Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

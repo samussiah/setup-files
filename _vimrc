@@ -50,7 +50,7 @@ autocmd vimenter * NERDTree
 " editor theme
 set background=dark
 colorscheme solarized
-set guifont=Lucida_Console:h14
+set guifont=Lucida_Console:h16
 
 
 
