@@ -1,8 +1,8 @@
 " don't bother with vi compatibility
-"set nocompatible
+set nocompatible
 
 " enable syntax highlighting
-"syntax enable
+syntax enable
 
 " point to plugins
 call plug#begin('~/vimfiles/plugins')
@@ -10,13 +10,14 @@ call plug#begin('~/vimfiles/plugins')
     " declare plugins
     Plug 'ap/vim-css-color'
     Plug 'altercation/vim-colors-solarized'
+    Plug 'dense-analysis/ale'
     Plug 'frazrepo/vim-rainbow'
     Plug 'godlygeek/tabular'
     Plug 'kien/ctrlp.vim'
+    Plug 'nathanaelkane/vim-indent-guides'
     Plug 'pangloss/vim-javascript'
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-surround'
@@ -25,7 +26,6 @@ call plug#begin('~/vimfiles/plugins')
 
 " include plugins
 call plug#end()
-
 
 
 " NERDTree
@@ -50,7 +50,7 @@ autocmd vimenter * NERDTree
 " editor theme
 set background=dark
 colorscheme solarized
-set guifont=Lucida_Console:h16
+set guifont=Lucida_Console:h13
 
 
 
@@ -75,6 +75,10 @@ set guifont=Lucida_Console:h16
         nmap <silent> <leader>sv :so $MYVIMRC<CR>
         " change directory to current file
         nmap <silent> <leader>cd :cd %:p:h<CR>
+        " bind vertical scrolling across panes
+        nmap <silent> <leader>sb :set scrollbind<CR>
+        " bind vertical scrolling across panes
+        nmap <silent> <leader>nosb :set noscrollbind<CR>
 
     " exit insert mode
     inoremap jj <esc>
@@ -108,7 +112,16 @@ set shiftwidth=4 " number of spaces to use for autoindenting
 set showmatch " set show matching parenthesis
 set smartcase " ignore case if search pattern is all lowercase, case-sensitive otherwise
 set smarttab " insert tabs on the start of a line according to shiftwidth, not tabstop
+set splitbelow " open new buffers beneath current buffer
+set splitright " open new buffers to the right of current buffer
 set tabstop=4 " a tab is four spaces
 set title " change the terminal's title
 set undolevels=1000 " use many muchos levels of undo
 set visualbell " don't beep
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
