@@ -10,14 +10,19 @@ call plug#begin('~/vimfiles/plugins')
     " declare plugins
     Plug 'ap/vim-css-color'
     Plug 'altercation/vim-colors-solarized'
-    Plug 'dense-analysis/ale'
+    "Plug 'dense-analysis/ale'
     Plug 'frazrepo/vim-rainbow'
+    Plug 'github/copilot.vim', { 'branch': 'release' }
     Plug 'godlygeek/tabular'
     Plug 'kien/ctrlp.vim'
+    Plug 'mechatroner/rainbow_csv'
+    Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'pangloss/vim-javascript'
+    Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+    Plug 'othree/yajs.vim'
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
+    Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-surround'
@@ -27,6 +32,8 @@ call plug#begin('~/vimfiles/plugins')
 " include plugins
 call plug#end()
 
+" copilot
+let g:copilot_filetypes = { 'markdown': v:true, 'yaml': v:true }
 
 " NERDTree
 autocmd vimenter * NERDTree
@@ -86,6 +93,14 @@ set guifont=Lucida_Console:h13
 " functions
 com! FormatJSON %!python -m json.tool
 
+" indent
+" set vim-r-plugin to 
+let r_indent_align_args = 0
+
+" Set vim-r-plugin to mimics ess :
+let r_indent_ess_comments = 0
+let r_indent_ess_compatible = 0
+
 " miscellaneous options
 "syntax on
 "filetype plugin indent on
@@ -95,6 +110,7 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 set clipboard=unnamed " copy/paste to system clipboard
 set copyindent " copy the previous indentation on autoindenting
 set expandtab " replace tabs with spaces
+set fileformats=dos " avoid display of unix-style line endings ( ^M )
 set hidden " hide buffers rather than close them
 set history=1000 " remember more commands and search history
 set hlsearch " highlight search terms
